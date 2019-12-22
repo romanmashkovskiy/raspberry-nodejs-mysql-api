@@ -6,7 +6,7 @@ export default {
         password: env.DB_PASSWORD,
         database: env.DB_NAME,
         host: env.DB_HOST,
-        dialect: 'mysql',
+        dialect: 'mariadb',
         define: {
             timestamps: true,
         }
@@ -16,7 +16,7 @@ export default {
         password: env.DB_PASSWORD,
         database: env.DB_NAME,
         host: env.DB_HOST,
-        dialect: 'mysql',
+        dialect: 'mariadb',
         define: {
             timestamps: true,
         }
@@ -26,7 +26,7 @@ export default {
         password: env.DB_PASSWORD,
         database: env.DB_NAME,
         host: env.DB_HOST,
-        dialect: 'mysql',
+        dialect: 'mariadb',
         define: {
             timestamps: true,
         }
