@@ -5,26 +5,20 @@ const LED = new Gpio(4, 'out');
 
 const raspberryController = {
     blink: (req, res) => {
-        const blinkLED = () => {
-            if (LED.readSync() === 0) {
-                LED.writeSync(1);
-            } else {
-                LED.writeSync(0);
-            }
-        };
-
-        const blinkInterval = setInterval(blinkLED, 250);
-
-        const endBlink = () => {
-            clearInterval(blinkInterval);
+        if (LED.readSync() === 0) {
+            LED.writeSync(1);
+        } else {
             LED.writeSync(0);
-            LED.unexport();
-        };
+        }
 
-        setTimeout(endBlink, 5000);
+        return successResponse(res, { message: 'led toggled' });
+    },
+    clear: (req, res) => {
+        LED.writeSync(0);
+        LED.unexport();
 
-        return successResponse(res, { message: 'Blink' });
-    }
+        return successResponse(res, { message: 'cleared' });
+    },
 };
 
 export default raspberryController;
