@@ -1,5 +1,5 @@
 import PromiseRouter from 'express-promise-router';
-import { authController, productsController } from '../controllers';
+import { authController, raspberryController } from '../controllers';
 import APIError from '../utils/APIError';
 import { errorResponse } from '../utils/response';
 import { loginGuard, accessGuard, resetPasswordGuard } from '../middlewares';
@@ -15,6 +15,9 @@ Router.post('/auth/email-confirm', accessGuard(), authController.confirmEmail);
 Router.post('/auth/password-reset', resetPasswordGuard(), authController.resetPassword);
 Router.post('/auth/password-restore', resetPasswordGuard(), authController.restorePassword);
 Router.post('/auth/send-confirm-code', accessGuard(), authController.sendConfirmEmailCode);
+
+/*Raspberry*/
+Router.post('/blink', accessGuard(), raspberryController.blink);
 
 /* Not found handler */
 Router.use((req, res, next) => next(new APIError(`${ req.url } - Not Found`, 404)));

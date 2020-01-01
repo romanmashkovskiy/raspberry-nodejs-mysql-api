@@ -30,6 +30,7 @@
     "mysql2": "^1.6.5",
     "nodemailer": "^6.3.0",
     "nodemon": "^1.19.1",
+    "onoff": "^5.0.1",
     "passport": "^0.4.0",
     "passport-jwt": "^4.0.0",
     "passport-local": "^1.0.0",
