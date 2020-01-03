@@ -1,31 +1,33 @@
 import env from './env';
 
+const { DB_USERNAME, DB_PASSWORD, DB_NAME, DB_HOST } = env;
+
 export default {
     development: {
-        username: env.DB_USERNAME,
-        password: env.DB_PASSWORD,
-        database: env.DB_NAME,
-        host: env.DB_HOST,
+        username: DB_USERNAME,
+        password: DB_PASSWORD,
+        database: DB_NAME,
+        host: DB_HOST,
         dialect: 'mariadb',
         define: {
             timestamps: true,
         }
     },
     test: {
-        username: env.DB_USERNAME,
-        password: env.DB_PASSWORD,
-        database: env.DB_NAME,
-        host: env.DB_HOST,
+        username: DB_USERNAME,
+        password: DB_PASSWORD,
+        database: DB_NAME,
+        host: DB_HOST,
         dialect: 'mariadb',
         define: {
             timestamps: true,
         }
     },
     production: {
-        username: env.DB_USERNAME,
-        password: env.DB_PASSWORD,
-        database: env.DB_NAME,
-        host: env.DB_HOST,
+        username: DB_USERNAME,
+        password: DB_PASSWORD,
+        database: DB_NAME,
+        host: DB_HOST,
         dialect: 'mariadb',
         define: {
             timestamps: true,

@@ -1,4 +1,5 @@
 import express from 'express';
+import http from 'http';
 import cors from 'cors';
 import bodyParser from 'body-parser';
 import { pick } from 'lodash';
@@ -7,8 +8,21 @@ import models from './models';
 import { apiRouter } from './routes';
 import { passport } from './core';
 import { errorResponse } from './utils/response';
+import socket from './utils/socket';
+import env from './config/env';
+
+const { PORT = 4001 } = env;
 
 const app = express();
+
+const server = http.Server(app);
+const io = socket(server);
+
+app.use((req, res, next) => {
+    req.io = io;
+    next();
+});
+
 app.use(cors());
 
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -50,9 +64,9 @@ models.sequelize.sync()
     });
 
 
-app.listen(4001, (err) => {
+server.listen(Number(PORT), (err) => {
     if (!err) {
-        console.log('Server is waiting for connection at localhost: 4001');
+        console.log(`Server is waiting for connection at localhost: ${ PORT }`);
     } else {
         console.log(err);
     }

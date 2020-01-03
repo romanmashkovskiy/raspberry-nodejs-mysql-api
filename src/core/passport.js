@@ -1,11 +1,11 @@
 import passport from 'passport';
-import {Strategy as LocalStrategy} from 'passport-local';
-import {Strategy as JWTStrategy, ExtractJwt} from 'passport-jwt';
+import { Strategy as LocalStrategy } from 'passport-local';
+import { Strategy as JWTStrategy, ExtractJwt } from 'passport-jwt';
 import models from '../models';
 import env from '../config/env';
-import {validateHash} from '../utils/hash';
+import { validateHash } from '../utils/hash';
 
-const {User} = models;
+const { User } = models;
 
 passport.use(new LocalStrategy(
     {
@@ -14,10 +14,10 @@ passport.use(new LocalStrategy(
     },
     async (email, password, done) => {
         try {
-            const user = await User.findOne({where: {email: email}});
+            const user = await User.findOne({ where: { email: email } });
 
             if (!user || !await validateHash(password, user.password)) {
-                return done(null, false, {message: 'Invalid email or password'});
+                return done(null, false, { message: 'Invalid email or password' });
             }
 
             return done(null, user);
