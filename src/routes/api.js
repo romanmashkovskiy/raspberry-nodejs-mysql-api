@@ -16,10 +16,6 @@ Router.post('/auth/password-reset', resetPasswordGuard(), authController.resetPa
 Router.post('/auth/password-restore', resetPasswordGuard(), authController.restorePassword);
 Router.post('/auth/send-confirm-code', accessGuard(), authController.sendConfirmEmailCode);
 
-/*Raspberry*/
-Router.post('/toggle-led', accessGuard(), raspberryController.blink);
-Router.post('/clear', accessGuard(), raspberryController.clear);
-
 /* Not found handler */
 Router.use((req, res, next) => next(new APIError(`${ req.url } - Not Found`, 404)));
 
